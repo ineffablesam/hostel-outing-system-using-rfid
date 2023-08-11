@@ -196,7 +196,6 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                               child: Text('No leave requests found.'),
                             );
                           } else {
-                            // Group the leave requests by month
                             final leaveDataByMonth = groupBy(
                               leaveRequest.leaveData,
                               (leave) => DateFormat('MMMM yyyy', 'en_US')
@@ -206,7 +205,6 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                       .parse(leave.createdAt!)),
                             );
 
-                            // Create a list of widgets for each group
                             final leaveDataByMonthWidgets = leaveDataByMonth
                                 .entries
                                 .toList()
@@ -239,6 +237,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                           month,
                                           style: GoogleFonts.inter(
                                             fontSize: 18.sp,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -295,7 +294,18 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                               padding: EdgeInsets.all(16.h),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: Colors.deepOrange,
+                                                // color: Colors.white,
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFF4B7BFD),
+                                                    Color(0xFF174EE4)
+                                                  ],
+                                                  stops: [0, 0.6],
+                                                  begin: AlignmentDirectional(
+                                                      1, -0.64),
+                                                  end: AlignmentDirectional(
+                                                      -1, 0.64),
+                                                ),
                                                 // based on the theme change the color
                                                 boxShadow: [
                                                   BoxShadow(
@@ -333,16 +343,17 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                                                     FontWeight
                                                                         .w900),
                                                       ),
+                                                      7.verticalSpace,
                                                       Text(
                                                         "${leave.fromDate?.substring(4, 11)} - ${leave.toDate?.substring(4, 11)}",
                                                         style:
                                                             GoogleFonts.inter(
-                                                                fontSize: 10.sp,
+                                                                fontSize: 12.sp,
                                                                 color: Colors
-                                                                    .amber,
+                                                                    .white60,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w600),
+                                                                        .w700),
                                                       ),
                                                       SizedBox(
                                                         height: 10.h,
@@ -418,16 +429,18 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                                                               .r),
                                                                   color: (leave.leaveStatus ==
                                                                               "Returned to campus" ||
-                                                                          leave.leaveStatus!.contains(
-                                                                              "Rejected"))
+                                                                          leave
+                                                                              .leaveStatus!
+                                                                              .contains(
+                                                                                  "Rejected"))
                                                                       ? Colors
                                                                           .redAccent
                                                                           .withOpacity(
-                                                                              0.1)
+                                                                              1)
                                                                       : Colors
-                                                                          .green
+                                                                          .white
                                                                           .withOpacity(
-                                                                              0.1)),
+                                                                              0.2)),
                                                               child: Text(
                                                                 _getDisplayedLeaveStatus(
                                                                     leave.leaveStatus ??

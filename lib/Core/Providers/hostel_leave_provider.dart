@@ -14,6 +14,7 @@ class LeaveRequest extends ChangeNotifier {
   String? _reason;
   String? _leaveType;
   String? _place;
+  String? _messType;
   bool _isLoading = false;
   String? _errorMessage;
 
@@ -23,11 +24,17 @@ class LeaveRequest extends ChangeNotifier {
   String? get reason => _reason;
   String? get leaveType => _leaveType;
   String? get place => _place;
+  String? get messType => _messType;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
   setRegNo(String value) {
     _regNo = value;
+    notifyListeners();
+  }
+
+  setMessType(String value) {
+    _messType = value;
     notifyListeners();
   }
 
@@ -66,6 +73,7 @@ class LeaveRequest extends ChangeNotifier {
       'reason': _reason,
       "place": _place,
       'leaveCategory': _leaveType,
+      'messCategory': _messType,
     });
     print(body);
     try {

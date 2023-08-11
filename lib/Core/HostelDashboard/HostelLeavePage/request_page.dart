@@ -39,7 +39,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                         if (_formKey.currentState?.validate() ?? false) {
                           // Use null-aware operator and provide a default value.
                           Provider.of<LeaveRequest>(context, listen: false)
-                              .applyLeave("21bce8427");
+                              .applyLeave("21BCE8427");
                         }
                       },
                       child: Container(
@@ -149,9 +149,22 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                           showDialog(
                                             context: context,
                                             builder: (context) => AlertDialog(
-                                              title: Text('Error'),
+                                              title: Text(
+                                                'Error',
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 17.sp,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                               content: Text(
-                                                  leaveRequest.errorMessage!),
+                                                leaveRequest.errorMessage!,
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.red,
+                                                ),
+                                              ),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {
@@ -277,7 +290,77 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                       ),
                                     ),
                                   ),
-
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8.h, vertical: 8.h),
+                                    child: Text(
+                                      "Mess Type",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 13.sp,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 3.h, horizontal: 8.h),
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      child: DropdownButtonFormField<String>(
+                                        value: null,
+                                        hint: Text("Select Mess"),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.all(20.0),
+                                          filled: true,
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(7.r)),
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(7.r)),
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(7.r)),
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                          fillColor: Colors.white54,
+                                        ),
+                                        validator: (value) {
+                                          if (value == null) {
+                                            return 'Please select a Mess type';
+                                          }
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          Provider.of<LeaveRequest>(context,
+                                                  listen: false)
+                                              .setMessType(value!);
+                                        },
+                                        items: <String>[
+                                          'Non-Veg',
+                                          'Veg',
+                                          'Special'
+                                        ].map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(
+                                              value,
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.black),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 8.h, vertical: 8.h),

@@ -14,6 +14,25 @@ class HostelDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Transform.translate(
+        offset: Offset(0, -10),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            HapticFeedback.heavyImpact();
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) => HostelLeaveRequestsPage()),
+            );
+          },
+          label: Text("Apply Leave"),
+          backgroundColor: Color(0xFF004bff),
+          elevation: 0,
+          icon: Icon(Icons.add),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -372,7 +391,7 @@ class HostelDashboardPage extends StatelessWidget {
 
   Widget _buildGridItem(String title, Color iconcolor, IconData icon, context) {
     return Material(
-      color: Colors.grey,
+      color: Colors.white,
       child: InkWell(
         onTap: () {},
         child: Container(
@@ -402,6 +421,7 @@ class HostelDashboardPage extends StatelessWidget {
               Text(
                 title,
                 style: GoogleFonts.poppins(
+                  color: Color(0xff000000),
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                 ),
