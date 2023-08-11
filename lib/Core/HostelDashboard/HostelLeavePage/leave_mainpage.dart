@@ -5,89 +5,87 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hostel/Core/HostelDashboard/HostelLeavePage/request_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
-import 'package:vtop_app/Helpers/CustomTap/custom_tap.dart';
-import 'package:vtop_app/Helpers/apis/theme_manager.dart';
-import 'package:vtop_app/pages/HostelDashboard/HostelLeavePage/leave_overview_page.dart';
-import 'package:vtop_app/pages/HostelDashboard/HostelLeavePage/request_page.dart';
 
-import '../../../Animation/flutter_flow_icon_button.dart';
-import '../../../Animation/flutter_flow_utils.dart';
-import '../../../Helpers/Student/profile.dart';
-import '../../../Providers/hostel_leave_provider.dart';
+import '../../CustomTap/custom_tap.dart';
+import '../../Providers/hostel_leave_provider.dart';
+import '../../Utils/flutter_flow_utils.dart';
+import 'leave_overview_page.dart';
 
 class HostelLeaveRequestsPage extends StatelessWidget {
-  final Profile? profile;
-  const HostelLeaveRequestsPage({Key? key, this.profile}) : super(key: key);
+  const HostelLeaveRequestsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LeaveRequest>(
-        create: (_) => LeaveRequest()..fetchLeaveData(profile?.regNo ?? ""),
+        create: (_) => LeaveRequest()..fetchLeaveData("21BCE8427"),
         child: Consumer<LeaveRequest>(builder: (context, leaveRequest, _) {
           return RefreshIndicator(
             backgroundColor: Colors.white,
             color: Theme.of(context).primaryColor,
             onRefresh: () => Provider.of<LeaveRequest>(context, listen: false)
-                .refreshData(profile?.regNo ?? ""),
+                .refreshData("21BCE8427"),
             child: Scaffold(
               body: CustomScrollView(
                 slivers: <Widget>[
                   Consumer<LeaveRequest>(builder: (context, leaveRequest, _) {
                     return SliverAppBar(
-                      toolbarHeight: 90,
+                      toolbarHeight: 50.h,
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
                       automaticallyImplyLeading: false,
                       pinned: true,
                       elevation: 0,
                       actions: [
-                        CustomTap(
-                          onTap: () {
-                            HapticFeedback.heavyImpact();
-                            Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                fullscreenDialog: true,
-                                builder: (context) => LeaveFormPopUP(
-                                  profile: profile,
+                        Padding(
+                          padding: EdgeInsets.all(8.0.h),
+                          child: CustomTap(
+                            onTap: () {
+                              HapticFeedback.heavyImpact();
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  fullscreenDialog: true,
+                                  builder: (context) => LeaveFormPopUP(),
+                                ),
+                              ).then((value) {
+                                Provider.of<LeaveRequest>(context,
+                                        listen: false)
+                                    .refreshData("21BCE8427");
+                              });
+                            },
+                            child: Container(
+                              width: 42.h,
+                              height: 42.h,
+                              margin: EdgeInsets.symmetric(horizontal: 10.h),
+                              decoration: BoxDecoration(
+                                color: Colors.deepOrange,
+                                borderRadius: BorderRadius.circular(10.r),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xFF4B7BFD),
+                                    Color(0xFF174EE4)
+                                  ],
+                                  stops: [0, 0.6],
+                                  begin: AlignmentDirectional(1, -0.64),
+                                  end: AlignmentDirectional(-1, 0.64),
                                 ),
                               ),
-                            ).then((value) {
-                              Provider.of<LeaveRequest>(context, listen: false)
-                                  .refreshData(profile?.regNo ?? "");
-                            });
-                          },
-                          child: Container(
-                            width: 42.h,
-                            height: 42.h,
-                            margin: EdgeInsets.symmetric(horizontal: 10.h),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardHighlightColor,
-                              borderRadius: BorderRadius.circular(10.r),
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF4B7BFD), Color(0xFF174EE4)],
-                                stops: [0, 0.6],
-                                begin: AlignmentDirectional(1, -0.64),
-                                end: AlignmentDirectional(-1, 0.64),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
                               ),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
                             ),
                           ),
                         )
                       ],
-                      leading: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
+                      leading: IconButton(
                         icon: Icon(
                           Icons.arrow_back_rounded,
                           size: 30,
+                          color: Colors.black,
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
@@ -97,7 +95,9 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                         child: Text(
                           "Leave Request",
                           style: GoogleFonts.inter(
-                              fontSize: 19.sp, fontWeight: FontWeight.w900),
+                              color: Colors.black,
+                              fontSize: 19.sp,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     );
@@ -128,8 +128,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                         height: 90.h,
                                         decoration: BoxDecoration(
                                             // color: Color(0xffECECEC),
-                                            color: Theme.of(context)
-                                                .cardHighlightColor,
+                                            color: Colors.blueAccent,
                                             borderRadius:
                                                 BorderRadius.circular(12.r)),
                                       ),
@@ -287,8 +286,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                                 Provider.of<LeaveRequest>(
                                                         context,
                                                         listen: false)
-                                                    .refreshData(
-                                                        profile?.regNo ?? "");
+                                                    .refreshData("21BCE8427");
                                               });
                                             },
                                             child: Container(
@@ -297,8 +295,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                               padding: EdgeInsets.all(16.h),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .cardHighlightColor,
+                                                color: Colors.deepOrange,
                                                 // based on the theme change the color
                                                 boxShadow: [
                                                   BoxShadow(

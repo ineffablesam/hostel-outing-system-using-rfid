@@ -2,18 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hostel/Core/CustomTap/custom_tap.dart';
 import 'package:provider/provider.dart';
-import 'package:vtop_app/Helpers/apis/theme_manager.dart';
 
-import '../../../Animation/flutter_flow_theme.dart';
-import '../../../Animation/flutter_flow_widgets.dart';
-import '../../../Helpers/CustomDatePicker/custom_date_picker.dart';
-import '../../../Helpers/Student/profile.dart';
-import '../../../Providers/hostel_leave_provider.dart';
+import '../../CustomDatePicker/custom_date_picker.dart';
+import '../../Providers/hostel_leave_provider.dart';
 
 class LeaveFormPopUP extends StatefulWidget {
-  final Profile? profile;
-  LeaveFormPopUP({Key? key, this.profile}) : super(key: key);
+  LeaveFormPopUP({Key? key}) : super(key: key);
 
   @override
   State<LeaveFormPopUP> createState() => _LeaveFormPopUPState();
@@ -38,27 +34,29 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                       EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 10.h),
-                    child: FFButtonWidget(
-                      onPressed: () {
+                    child: CustomTap(
+                      onTap: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           // Use null-aware operator and provide a default value.
                           Provider.of<LeaveRequest>(context, listen: false)
-                              .applyLeave(widget.profile?.regNo ?? "");
+                              .applyLeave("21bce8427");
                         }
                       },
-                      text: Provider.of<LeaveRequest>(context).isLoading
-                          ? 'Applying...'
-                          : 'Apply Leave',
-                      options: FFButtonOptions(
-                        height: 50.h,
-                        color: Theme.of(context).primaryColor,
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                ),
-                        elevation: 0,
-                        borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(20.r)),
+                        child: Center(
+                          child: Text(
+                            Provider.of<LeaveRequest>(context).isLoading
+                                ? 'Applying...'
+                                : 'Apply Leave',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -79,7 +77,9 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                         child: Text(
                           'Close',
                           style: GoogleFonts.inter(
-                              fontSize: 12.sp, fontWeight: FontWeight.w900),
+                              color: Colors.black,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
@@ -87,7 +87,9 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                       child: Text(
                         'New Leave',
                         style: GoogleFonts.inter(
-                            fontSize: 19.sp, fontWeight: FontWeight.w900),
+                            color: Colors.black,
+                            fontSize: 19.sp,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
@@ -211,6 +213,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                       "Leave Type",
                                       style: GoogleFonts.inter(
                                           fontSize: 13.sp,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.w700),
                                     ),
                                   ),
@@ -229,25 +232,21 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(7.r)),
                                             borderSide:
-                                                BorderSide(color: Colors.white),
+                                                BorderSide(color: Colors.black),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(7.r)),
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .primaryColor),
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
                                           ),
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(7.r)),
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .cardColor
-                                                    .withOpacity(0.8)),
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
                                           ),
-                                          fillColor: Theme.of(context)
-                                              .cardHighlightColor,
+                                          fillColor: Colors.white54,
                                         ),
                                         validator: (value) {
                                           if (value == null) {
@@ -268,7 +267,11 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                             (String value) {
                                           return DropdownMenuItem<String>(
                                             value: value,
-                                            child: Text(value),
+                                            child: Text(
+                                              value,
+                                              style: GoogleFonts.poppins(
+                                                  color: Colors.black),
+                                            ),
                                           );
                                         }).toList(),
                                       ),
@@ -281,6 +284,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                     child: Text(
                                       "To Location",
                                       style: GoogleFonts.inter(
+                                          color: Colors.black,
                                           fontSize: 13.sp,
                                           fontWeight: FontWeight.w700),
                                     ),
@@ -302,14 +306,13 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(7.r)),
                                               borderSide: BorderSide(
-                                                  color: Colors.white),
+                                                  color: Colors.black),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(7.r)),
                                               borderSide: BorderSide(
-                                                  color: Theme.of(context)
-                                                      .primaryColor),
+                                                  color: Colors.black),
                                             ),
                                             enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.only(
@@ -326,8 +329,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                                       .cardColor
                                                       .withOpacity(0)),
                                             ),
-                                            fillColor: Theme.of(context)
-                                                .cardHighlightColor,
+                                            fillColor: Colors.white54,
                                           ),
                                           // maxLines: 10,
                                           validator: (value) {
@@ -352,6 +354,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                       "Reason for Applying Leave",
                                       style: GoogleFonts.inter(
                                           fontSize: 13.sp,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.w700),
                                     ),
                                   ),
@@ -378,8 +381,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(7.r)),
                                               borderSide: BorderSide(
-                                                  color: Theme.of(context)
-                                                      .primaryColor),
+                                                  color: Colors.black),
                                             ),
                                             enabledBorder: OutlineInputBorder(
                                               borderRadius: BorderRadius.only(
@@ -396,8 +398,7 @@ class _LeaveFormPopUPState extends State<LeaveFormPopUP> {
                                                       .cardColor
                                                       .withOpacity(0)),
                                             ),
-                                            fillColor: Theme.of(context)
-                                                .cardHighlightColor,
+                                            fillColor: Colors.white54,
                                           ),
                                           // maxLines: 10,
                                           validator: (value) {

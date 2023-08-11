@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:vtop_app/Helpers/apis/theme_manager.dart';
-import 'package:vtop_app/pages/student_details_pages/Home%20Screen/home_page.dart';
 
-import '../../../Animation/flutter_flow_icon_button.dart';
-import '../../../Helpers/Student/fetch_leave_requests_object.dart';
+import '../../Objects/fetch_leave_requests_object.dart';
 
 class LeaveOverviewPage extends StatelessWidget {
   final FetchLeaveRequestData leaveData;
@@ -101,11 +98,7 @@ class LeaveOverviewPage extends StatelessWidget {
             automaticallyImplyLeading: false,
             pinned: true,
             elevation: 0,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              borderWidth: 1,
-              buttonSize: 60,
+            leading: IconButton(
               icon: Icon(
                 Icons.arrow_back_rounded,
                 size: 30,
@@ -207,7 +200,7 @@ class _buildOverviewWidget extends StatelessWidget {
                 GoogleFonts.inter(fontSize: 17.sp, fontWeight: FontWeight.w300),
           ),
           Text(
-            leaveData.leaveCategory?.toCapitalized() ?? "",
+            leaveData.leaveCategory ?? "",
             style: GoogleFonts.inter(
               fontSize: 17.sp,
               fontWeight: FontWeight.w500,
@@ -275,7 +268,7 @@ class _statusTrackerWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 20.w),
       margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardHighlightColor,
+        color: Colors.blueAccent,
         // based on the theme change the color
         boxShadow: [
           BoxShadow(
@@ -358,8 +351,7 @@ class _statusTrackerWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(statuses[index].toCapitalized(),
-                              style: textStyle),
+                          Text(statuses[index], style: textStyle),
                           Text("Time : MM/dd/yyyy hh:mm",
                               style: GoogleFonts.inter(
                                   fontSize: 11.sp,

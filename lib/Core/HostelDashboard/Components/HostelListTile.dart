@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vtop_app/Helpers/apis/theme_manager.dart';
 
 class HostelCustomListTile extends StatelessWidget {
   final String title;
@@ -23,7 +22,6 @@ class HostelCustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color textColor = Theme.of(context).textTheme.bodySmall!.color!;
     return Column(
       children: [
         InkWell(
@@ -31,14 +29,10 @@ class HostelCustomListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
           child: Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).cardHighlightColor,
+                color: Colors.white,
                 border: Border(
-                    bottom: BorderSide(
-                        color: Theme.of(context).cardHighlightColor,
-                        width: 0.3),
-                    top: BorderSide(
-                        color: Theme.of(context).cardHighlightColor,
-                        width: 0.3))),
+                    bottom: BorderSide(color: Colors.black, width: 0.3),
+                    top: BorderSide(color: Colors.black, width: 0.3))),
             child: ListTile(
               shape: const RoundedRectangleBorder(),
               onTap: null,
@@ -66,6 +60,7 @@ class HostelCustomListTile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 11.4.sp,
                   fontWeight: FontWeight.w500,
+                  color: Colors.black45,
                   // color: Colors.black
                 ),
               ),
@@ -74,7 +69,7 @@ class HostelCustomListTile extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 11.sp,
                     fontWeight: FontWeight.normal,
-                    color: Colors.grey),
+                    color: Colors.black),
               ),
               trailing: Visibility(
                 visible: visible,

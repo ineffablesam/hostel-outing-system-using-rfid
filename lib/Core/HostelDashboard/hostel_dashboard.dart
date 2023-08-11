@@ -1,20 +1,15 @@
-import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vtop_app/Helpers/apis/theme_manager.dart';
-import 'package:vtop_app/pages/HostelDashboard/Components/HostelListTile.dart';
 
-import '../../Helpers/Student/profile.dart';
+import 'Components/HostelListTile.dart';
 import 'HostelLeavePage/leave_mainpage.dart';
 
 class HostelDashboardPage extends StatelessWidget {
-  final Profile? profile;
-  const HostelDashboardPage({super.key, this.profile});
+  const HostelDashboardPage({super.key});
   // 1375fc
   @override
   Widget build(BuildContext context) {
@@ -48,12 +43,12 @@ class HostelDashboardPage extends StatelessWidget {
                   top: 30.h,
                 ),
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        opacity: 0.2,
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.high,
-                        image: AssetImage(
-                            "assets/lottie_animations/footer_pattern.png")),
+                    // image: DecorationImage(
+                    //     opacity: 0.2,
+                    //     fit: BoxFit.cover,
+                    //     filterQuality: FilterQuality.high,
+                    //     image: AssetImage(
+                    //         "assets/lottie_animations/footer_pattern.png")),
                     // color: primaryColor,
                     gradient: LinearGradient(
                         colors: [Color(0xff103cc9), Color(0xff103cc9)])),
@@ -86,7 +81,7 @@ class HostelDashboardPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                profile?.name ?? "No Name Found",
+                                "satyanand",
                                 overflow: TextOverflow.visible,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
@@ -96,7 +91,7 @@ class HostelDashboardPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                profile?.regNo ?? "No Reg.No Found",
+                                "21bce8427",
                                 style: GoogleFonts.poppins(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w600,
@@ -104,7 +99,7 @@ class HostelDashboardPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'MH-2 Block',
+                                'MH-4 Block',
                                 style: GoogleFonts.poppins(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w600,
@@ -117,8 +112,6 @@ class HostelDashboardPage extends StatelessWidget {
                             radius: 34.r,
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
-                              backgroundImage: MemoryImage(base64Decode(
-                                  profile?.profileImageBase64 ?? "")),
                               radius: 31.r,
                             ),
                           )
@@ -163,7 +156,9 @@ class HostelDashboardPage extends StatelessWidget {
                       Text(
                         'Explore',
                         style: GoogleFonts.inter(
-                            fontSize: 19.sp, fontWeight: FontWeight.w900),
+                            color: Colors.black,
+                            fontSize: 19.sp,
+                            fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -173,7 +168,7 @@ class HostelDashboardPage extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 7.h),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -187,7 +182,7 @@ class HostelDashboardPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12.r),
                       child: Container(
                           decoration: BoxDecoration(
-                            color: Theme.of(context).cardHighlightColor,
+                            color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -221,9 +216,7 @@ class HostelDashboardPage extends StatelessWidget {
                                     context,
                                     CupertinoPageRoute(
                                         builder: (context) =>
-                                            HostelLeaveRequestsPage(
-                                              profile: profile,
-                                            )),
+                                            HostelLeaveRequestsPage()),
                                   );
                                 },
                                 icon: Icons.home,
@@ -379,7 +372,7 @@ class HostelDashboardPage extends StatelessWidget {
 
   Widget _buildGridItem(String title, Color iconcolor, IconData icon, context) {
     return Material(
-      color: Theme.of(context).cardHighlightColor,
+      color: Colors.grey,
       child: InkWell(
         onTap: () {},
         child: Container(
