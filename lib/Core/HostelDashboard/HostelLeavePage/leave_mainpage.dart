@@ -28,13 +28,13 @@ class HostelLeaveRequestsPage extends StatelessWidget {
             onRefresh: () => Provider.of<LeaveRequest>(context, listen: false)
                 .refreshData("21BCE8427"),
             child: Scaffold(
+              backgroundColor: Colors.grey.shade100,
               body: CustomScrollView(
                 slivers: <Widget>[
                   Consumer<LeaveRequest>(builder: (context, leaveRequest, _) {
                     return SliverAppBar(
                       toolbarHeight: 50.h,
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
+                      backgroundColor: Colors.grey.shade100,
                       automaticallyImplyLeading: false,
                       pinned: true,
                       elevation: 0,
@@ -120,17 +120,29 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                     child: Shimmer(
                                       duration: Duration(seconds: 7),
                                       interval: Duration(milliseconds: 4),
-                                      color: Colors.black38,
+                                      color: Colors.white,
                                       colorOpacity: 0,
                                       enabled: true,
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 90.h,
-                                        decoration: BoxDecoration(
-                                            // color: Color(0xffECECEC),
-                                            color: Colors.blueAccent,
-                                            borderRadius:
-                                                BorderRadius.circular(12.r)),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 5.h, horizontal: 6.0.w),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 90.h,
+                                          decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.05),
+                                                  offset: Offset(0, 4),
+                                                  blurRadius: 47,
+                                                  spreadRadius: 20,
+                                                ),
+                                              ],
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(12.r)),
+                                        ),
                                       ),
                                     ),
                                   );

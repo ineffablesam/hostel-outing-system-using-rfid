@@ -24,63 +24,66 @@ class HostelCustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(12.r),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
-                    bottom: BorderSide(color: Colors.black, width: 0.3),
-                    top: BorderSide(color: Colors.black, width: 0.3))),
-            child: ListTile(
-              shape: const RoundedRectangleBorder(),
-              onTap: null,
-              leading: Visibility(
-                visible: Logovisible,
-                child: Container(
-                  width: 39.h,
-                  height: 39.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.r),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: gradientColor,
-                      )),
-                  child: Icon(
-                    icon,
-                    size: 19.sp,
-                    color: Colors.white,
+        Material(
+          color: Colors.white,
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(12.r),
+            child: Container(
+              decoration: BoxDecoration(
+                  // border: Border(
+                  //     bottom: BorderSide(color: Colors.black, width: 0.3),
+                  //     top: BorderSide(color: Colors.black, width: 0.3))
+                  ),
+              child: ListTile(
+                shape: const RoundedRectangleBorder(),
+                onTap: () {},
+                leading: Visibility(
+                  visible: Logovisible,
+                  child: Container(
+                    width: 39.h,
+                    height: 39.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.r),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: gradientColor,
+                        )),
+                    child: Icon(
+                      icon,
+                      size: 19.sp,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              title: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 11.4.sp,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black45,
-                  // color: Colors.black
+                title: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 11.4.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                    // color: Colors.black
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                subtitle,
-                style: TextStyle(
-                    fontSize: 11.sp,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black),
-              ),
-              trailing: Visibility(
-                visible: visible,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFFADADAD),
-                  size: 19.sp,
+                subtitle: Text(
+                  subtitle,
+                  style: TextStyle(
+                      fontSize: 11.sp,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.grey.shade600),
                 ),
+                trailing: Visibility(
+                  visible: visible,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color(0xFFADADAD),
+                    size: 19.sp,
+                  ),
+                ),
+                tileColor: Colors.white,
+                dense: false,
               ),
-              tileColor: Colors.white,
-              dense: false,
             ),
           ),
         ),

@@ -15,6 +15,7 @@ class HostelDashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.grey.shade100,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Transform.translate(
         offset: Offset(0, -10),
@@ -27,10 +28,20 @@ class HostelDashboardPage extends StatelessWidget {
                   builder: (context) => HostelLeaveRequestsPage()),
             );
           },
-          label: Text("Apply Leave"),
+          label: Text(
+            "Apply Leave",
+            style: GoogleFonts.inter(
+                fontSize: 12.sp,
+                color: Colors.white,
+                fontWeight: FontWeight.w700),
+          ),
           backgroundColor: Color(0xFF004bff),
           elevation: 0,
-          icon: Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            size: 23.sp,
+            color: Colors.white,
+          ),
         ),
       ),
       body: CustomScrollView(
@@ -100,7 +111,7 @@ class HostelDashboardPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "satyanand",
+                                "Satyanand",
                                 overflow: TextOverflow.visible,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
@@ -110,7 +121,7 @@ class HostelDashboardPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "21bce8427",
+                                "21BCE7615",
                                 style: GoogleFonts.poppins(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w600,
@@ -132,6 +143,9 @@ class HostelDashboardPage extends StatelessWidget {
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
                               radius: 31.r,
+                              backgroundImage: const AssetImage(
+                                "assets/images/satyanand.png",
+                              ),
                             ),
                           )
                         ],
@@ -167,7 +181,7 @@ class HostelDashboardPage extends StatelessWidget {
                   height: 5.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 14.h, top: 3.h, bottom: 2.h),
+                  padding: EdgeInsets.only(left: 14.h, top: 7.h, bottom: 7.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,17 +191,18 @@ class HostelDashboardPage extends StatelessWidget {
                         style: GoogleFonts.inter(
                             color: Colors.black,
                             fontSize: 19.sp,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w900),
                       ),
                     ],
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 7.h),
+                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 14.w),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
+                      borderRadius: BorderRadius.circular(19.r),
                       boxShadow: [
                         BoxShadow(
                           color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -198,10 +213,11 @@ class HostelDashboardPage extends StatelessWidget {
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.r),
+                      borderRadius: BorderRadius.circular(19.r),
                       child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
+                            borderRadius: BorderRadius.circular(19.r),
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -275,112 +291,6 @@ class HostelDashboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(left: 14.h, top: 10.h, bottom: 2.h),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Text(
-                //         'Miscellaneous',
-                //         style: GoogleFonts.inter(
-                //             fontSize: 19.sp, fontWeight: FontWeight.w900),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Padding(
-                //   padding:
-                //       EdgeInsets.symmetric(horizontal: 16.w, vertical: 7.h),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: Theme.of(context).scaffoldBackgroundColor,
-                //       boxShadow: [
-                //         BoxShadow(
-                //           color: Color.fromRGBO(0, 0, 0, 0.05),
-                //           offset: Offset(0, 4),
-                //           blurRadius: 47,
-                //           spreadRadius: 20,
-                //         ),
-                //       ],
-                //     ),
-                //     child: ClipRRect(
-                //       borderRadius: BorderRadius.circular(12.r),
-                //       child: Container(
-                //           decoration: BoxDecoration(
-                //             color: Theme.of(context).cardHighlightColor,
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: Color.fromRGBO(0, 0, 0, 0.05),
-                //                 offset: Offset(0, 4),
-                //                 blurRadius: 47,
-                //                 spreadRadius: 20,
-                //               ),
-                //             ],
-                //           ),
-                //           child: Column(
-                //             children: [
-                //               HostelCustomListTile(
-                //                 Logovisible: true,
-                //                 visible: true,
-                //                 onTap: () {},
-                //                 icon: Icons.report,
-                //                 title: 'Report a Issue',
-                //                 subtitle: 'File a Issue',
-                //                 gradientColor: const [
-                //                   Color(0xff4670fc),
-                //                   Color(0xff3F5EFB)
-                //                 ],
-                //               ),
-                //               HostelCustomListTile(
-                //                 Logovisible: true,
-                //                 visible: true,
-                //                 onTap: () {
-                //                   HapticFeedback.heavyImpact();
-                //                   Navigator.push(
-                //                     context,
-                //                     CupertinoPageRoute(
-                //                         builder: (context) =>
-                //                             HostelLeaveRequestsPage()),
-                //                   );
-                //                 },
-                //                 icon: Icons.home,
-                //                 title: 'Apply Leave',
-                //                 subtitle: 'Apply Leave Requests',
-                //                 gradientColor: const [
-                //                   Color(0xff00d2ff),
-                //                   Color(0xff3a47d5)
-                //                 ],
-                //               ),
-                //               HostelCustomListTile(
-                //                 Logovisible: true,
-                //                 visible: true,
-                //                 onTap: () {},
-                //                 icon: Icons.emoji_food_beverage_outlined,
-                //                 title: 'Mess',
-                //                 subtitle: 'Information About your Hostel Mess',
-                //                 gradientColor: const [
-                //                   Color(0xffefd5ff),
-                //                   Color(0xff515ada)
-                //                 ],
-                //               ),
-                //               HostelCustomListTile(
-                //                 Logovisible: true,
-                //                 visible: true,
-                //                 onTap: () {},
-                //                 icon: Icons.info,
-                //                 title: 'My Info Centre',
-                //                 subtitle: 'More Information about your Hostel',
-                //                 gradientColor: const [
-                //                   Color(0xffd53369),
-                //                   Color(0xffdaae51)
-                //                 ],
-                //               ),
-                //             ],
-                //           )),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
