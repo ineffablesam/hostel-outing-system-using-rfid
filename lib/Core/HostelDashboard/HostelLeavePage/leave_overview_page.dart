@@ -141,6 +141,7 @@ class LeaveOverviewPage extends StatelessWidget {
                       ),
                     ),
                     _statusTrackerWidget(
+                        leaveData: leaveData,
                         statuses: statuses,
                         statusColors: statusColors,
                         completedStatuses: completedStatuses),
@@ -260,14 +261,29 @@ class _statusTrackerWidget extends StatelessWidget {
     required this.statuses,
     required this.statusColors,
     required this.completedStatuses,
+    required this.leaveData,
   });
-
+  final FetchLeaveRequestData leaveData;
   final List<String> statuses;
   final Map<String, Color> statusColors;
   final List<bool> completedStatuses;
 
   @override
   Widget build(BuildContext context) {
+    // currentTime should be in gmt + 5:30
+    // i need to show only Hours minutes and date
+
+    DateTime currentTime =
+        DateTime.now().toUtc().add(Duration(hours: 5, minutes: 30));
+    DateTime currentTimeWithoutMilliseconds = DateTime(
+      currentTime.year,
+      currentTime.month,
+      currentTime.day,
+      currentTime.hour,
+      currentTime.minute,
+      0,
+    );
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(left: 20.w),
@@ -357,10 +373,21 @@ class _statusTrackerWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(statuses[index], style: textStyle),
-                          Text("Time : MM/dd/yyyy hh:mm",
-                              style: GoogleFonts.inter(
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.w400)),
+                          Text(
+                            statuses[index] == "Left campus"
+                                ? "${leaveData?.leftCampusAt ?? ""}"
+                                : statuses[index] == "Returned to campus"
+                                    ? "${leaveData?.returnedCampusAt ?? ""}"
+                                    : statuses[index] ==
+                                            "Leave applied successfully"
+                                        ? "${currentTimeWithoutMilliseconds ?? ""}"
+                                            .padLeft(2, '0')
+                                        : "",
+                            style: GoogleFonts.inter(
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
                         ],
                       ),
                     ),

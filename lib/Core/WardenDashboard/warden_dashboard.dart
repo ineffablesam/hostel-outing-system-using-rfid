@@ -32,7 +32,7 @@ class WardenScreen extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
-        title: Text('Mentor Dashboard',
+        title: Text('Warden Dashboard',
             style: GoogleFonts.poppins(
               fontSize: 20.sp,
               color: Colors.white,
