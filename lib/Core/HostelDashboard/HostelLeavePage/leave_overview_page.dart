@@ -90,11 +90,13 @@ class LeaveOverviewPage extends StatelessWidget {
         List.generate(statuses.length, (index) => index <= statusIndex!);
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
             toolbarHeight: 90,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            backgroundColor: Colors.black,
             automaticallyImplyLeading: false,
             pinned: true,
             elevation: 0,
@@ -102,6 +104,7 @@ class LeaveOverviewPage extends StatelessWidget {
               icon: Icon(
                 Icons.arrow_back_rounded,
                 size: 30,
+                color: Colors.white,
               ),
               onPressed: () async {
                 Navigator.pop(context);
@@ -110,8 +113,10 @@ class LeaveOverviewPage extends StatelessWidget {
             title: FadeIn(
               child: Text(
                 leaveData.fromDate?.substring(0, 17) ?? "",
-                style: GoogleFonts.inter(
-                    fontSize: 15.sp, fontWeight: FontWeight.w900),
+                style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w900),
               ),
             ),
           ),
@@ -200,7 +205,7 @@ class _buildOverviewWidget extends StatelessWidget {
                 GoogleFonts.inter(fontSize: 17.sp, fontWeight: FontWeight.w300),
           ),
           Text(
-            leaveData.leaveCategory ?? "",
+            leaveData.leaveCategory?.toUpperCase() ?? "",
             style: GoogleFonts.inter(
               fontSize: 17.sp,
               fontWeight: FontWeight.w500,
@@ -268,7 +273,7 @@ class _statusTrackerWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 20.w),
       margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: Colors.blueAccent,
+        color: Color(0xff111111),
         // based on the theme change the color
         boxShadow: [
           BoxShadow(
@@ -333,12 +338,12 @@ class _statusTrackerWidget extends StatelessWidget {
                   isLast: index == statuses.length - 1,
                   axis: TimelineAxis.vertical,
                   indicatorStyle: IndicatorStyle(
-                    width: 20.0,
+                    width: 20.r,
                     color: indicatorColor,
                   ),
                   beforeLineStyle: LineStyle(
                     color: lineColor,
-                    thickness: 5.w,
+                    thickness: 2.w,
                   ),
                   endChild: Container(
                     constraints: BoxConstraints(

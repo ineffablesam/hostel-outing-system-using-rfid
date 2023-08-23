@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../Objects/fetch_leave_requests_object.dart';
 
-const base_url = "https://shop.vitap.app";
+const base_url = "https://testapi.vitap.app";
 
 class LeaveRequest extends ChangeNotifier {
   String? _regNo;
@@ -63,7 +63,7 @@ class LeaveRequest extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> applyLeave(String regNo) async {
+  Future<void> applyLeave(BuildContext context, String regNo) async {
     final url = '$base_url/api/uploadform';
     final headers = {'Content-Type': 'application/json'};
     final body = json.encode({
@@ -87,6 +87,9 @@ class LeaveRequest extends ChangeNotifier {
       final responseData = json.decode(response.body);
 
       if (response.statusCode == 200) {
+        showSnackBar(context, 'Leave Request Submitted Successfully');
+        // Close the dialog
+        Navigator.of(context).pop();
         print(responseData);
       } else {
         print(responseData);
@@ -141,6 +144,16 @@ class LeaveRequest extends ChangeNotifier {
       print(error);
       throw error;
     }
+  }
+
+  // Helper function to show a SnackBar
+  void showSnackBar(BuildContext ctx, String message) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 3),
+    );
+    // Assuming you have access to the ScaffoldState, you can use ScaffoldMessenger to show the SnackBar
+    ScaffoldMessenger.of(ctx).showSnackBar(snackBar);
   }
 
   Future<void> refreshData(String regNo) async {

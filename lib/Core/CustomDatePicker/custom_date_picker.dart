@@ -52,9 +52,9 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           padding: EdgeInsets.symmetric(horizontal: 8.h),
           child: Text(
             widget.label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.poppins(
                 fontSize: 13.sp,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.w700),
           ),
         ),
@@ -69,6 +69,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                   contentPadding: EdgeInsets.all(20.0),
                   hintText: 'Select date',
                   filled: true,
+                  hintStyle: GoogleFonts.poppins(
+                    color: Colors.grey.shade700,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(7.r)),
                     borderSide: BorderSide(color: Colors.black),
@@ -76,10 +81,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(7.r)),
                     borderSide: BorderSide(
-                        color: Theme.of(context).cardColor.withOpacity(0.8)),
+                        color: Theme.of(context).cardColor.withOpacity(0)),
                   ),
-                  fillColor: Colors.white54,
-                  suffixIcon: Icon(Icons.calendar_today),
+                  fillColor: Color(0xff111111),
+                  suffixIcon:
+                      Icon(Icons.calendar_today, color: Colors.grey.shade900),
                 ),
                 controller: _controller,
                 keyboardType: TextInputType.datetime,

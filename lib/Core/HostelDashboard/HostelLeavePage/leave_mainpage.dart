@@ -28,13 +28,13 @@ class HostelLeaveRequestsPage extends StatelessWidget {
             onRefresh: () => Provider.of<LeaveRequest>(context, listen: false)
                 .refreshData("21BCE8427"),
             child: Scaffold(
-              backgroundColor: Colors.grey.shade100,
+              backgroundColor: Colors.black,
               body: CustomScrollView(
                 slivers: <Widget>[
                   Consumer<LeaveRequest>(builder: (context, leaveRequest, _) {
                     return SliverAppBar(
                       toolbarHeight: 50.h,
-                      backgroundColor: Colors.grey.shade100,
+                      backgroundColor: Colors.black,
                       automaticallyImplyLeading: false,
                       pinned: true,
                       elevation: 0,
@@ -85,7 +85,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                         icon: Icon(
                           Icons.arrow_back_rounded,
                           size: 30,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
@@ -94,8 +94,8 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                       title: FadeIn(
                         child: Text(
                           "Leave Request",
-                          style: GoogleFonts.inter(
-                              color: Colors.black,
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
                               fontSize: 19.sp,
                               fontWeight: FontWeight.w500),
                         ),
@@ -139,7 +139,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                                   spreadRadius: 20,
                                                 ),
                                               ],
-                                              color: Colors.white,
+                                              color: Color(0xff111111),
                                               borderRadius:
                                                   BorderRadius.circular(12.r)),
                                         ),
@@ -154,51 +154,35 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 16.h, horizontal: 10.w),
-                                  alignment: Alignment.center,
-                                  color: Colors.red,
-                                  child: MediaQuery.removePadding(
-                                    context: context,
-                                    removeTop: true,
-                                    child: ListView(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                CupertinoActivityIndicator(),
-                                                SizedBox(
-                                                  width: 4.w,
-                                                ),
-                                                Text(
-                                                  "⚠️ Error:  ",
-                                                  style: GoogleFonts.inter(
-                                                      fontWeight:
-                                                          FontWeight.w800),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 9.h,
-                                            ),
-                                            Text(
-                                              leaveRequest.errorMessage!,
-                                              overflow: TextOverflow.clip,
-                                              style: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                200.verticalSpace,
+                                // CupertinoActivityIndicator(
+                                //   radius: 15.r,
+                                // ),
+                                Text(
+                                  "😊",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 50.sp,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                10.verticalSpace,
+                                Text(
+                                  "No Leave Requests Found",
+                                  style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                SizedBox(
+                                  height: 9.h,
+                                ),
+                                SizedBox(
+                                  width: 300.w,
+                                  child: Text(
+                                    "If you would like to request a leave, please click on the add button on the top right corner.",
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.inter(
+                                        color: Colors.grey.shade500,
+                                        fontWeight: FontWeight.w300),
                                   ),
                                 ),
                               ],
@@ -237,8 +221,7 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                           height: 3.h,
                                           width: 21.w,
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color: Colors.blueAccent,
                                               borderRadius:
                                                   BorderRadius.circular(10.r)),
                                         ),
@@ -249,8 +232,8 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                           month,
                                           style: GoogleFonts.inter(
                                             fontSize: 18.sp,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
+                                            color: Colors.grey.shade300,
+                                            fontWeight: FontWeight.w800,
                                           ),
                                         ),
                                       ],
@@ -306,18 +289,8 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                               padding: EdgeInsets.all(16.h),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                // color: Colors.white,
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    Color(0xFF4B7BFD),
-                                                    Color(0xFF174EE4)
-                                                  ],
-                                                  stops: [0, 0.6],
-                                                  begin: AlignmentDirectional(
-                                                      1, -0.64),
-                                                  end: AlignmentDirectional(
-                                                      -1, 0.64),
-                                                ),
+                                                color: Color(0xff111111),
+
                                                 // based on the theme change the color
                                                 boxShadow: [
                                                   BoxShadow(
@@ -441,18 +414,16 @@ class HostelLeaveRequestsPage extends StatelessWidget {
                                                                               .r),
                                                                   color: (leave.leaveStatus ==
                                                                               "Returned to campus" ||
-                                                                          leave
-                                                                              .leaveStatus!
-                                                                              .contains(
-                                                                                  "Rejected"))
+                                                                          leave.leaveStatus!.contains(
+                                                                              "Rejected"))
                                                                       ? Colors
                                                                           .redAccent
                                                                           .withOpacity(
-                                                                              1)
+                                                                              0.1)
                                                                       : Colors
-                                                                          .white
+                                                                          .green
                                                                           .withOpacity(
-                                                                              0.2)),
+                                                                              0.1)),
                                                               child: Text(
                                                                 _getDisplayedLeaveStatus(
                                                                     leave.leaveStatus ??

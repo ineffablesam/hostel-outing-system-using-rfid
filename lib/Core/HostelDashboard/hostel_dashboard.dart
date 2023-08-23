@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hostel/Core/HostelDashboard/Components/side_drawer.dart';
 
 import 'Components/HostelListTile.dart';
 import 'HostelLeavePage/leave_mainpage.dart';
@@ -15,7 +16,11 @@ class HostelDashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: Colors.grey.shade100,
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: SideDrawer(),
+      ),
+      backgroundColor: Colors.black,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Transform.translate(
         offset: Offset(0, -10),
@@ -86,20 +91,7 @@ class HostelDashboardPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 18.5.sp,
-                            )),
-                      ],
-                    ),
+                    40.verticalSpace,
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 10.w, vertical: 15.h),
@@ -189,7 +181,7 @@ class HostelDashboardPage extends StatelessWidget {
                       Text(
                         'Explore',
                         style: GoogleFonts.inter(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 19.sp,
                             fontWeight: FontWeight.w900),
                       ),
@@ -201,7 +193,7 @@ class HostelDashboardPage extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 8.h, horizontal: 14.w),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xff111111),
                       borderRadius: BorderRadius.circular(19.r),
                       boxShadow: [
                         BoxShadow(
@@ -216,7 +208,7 @@ class HostelDashboardPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(19.r),
                       child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Color(0xff111111),
                             borderRadius: BorderRadius.circular(19.r),
                             boxShadow: [
                               BoxShadow(
@@ -301,15 +293,15 @@ class HostelDashboardPage extends StatelessWidget {
 
   Widget _buildGridItem(String title, Color iconcolor, IconData icon, context) {
     return Material(
-      color: Colors.white,
+      color: Color(0xff111111),
       child: InkWell(
         onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             border: Border(
               right: BorderSide(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                width: 1.w,
+                color: Color(0xff252525),
+                width: 0.7.w,
               ),
             ),
           ),
@@ -331,7 +323,7 @@ class HostelDashboardPage extends StatelessWidget {
               Text(
                 title,
                 style: GoogleFonts.poppins(
-                  color: Color(0xff000000),
+                  color: Colors.white,
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                 ),
