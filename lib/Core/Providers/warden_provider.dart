@@ -52,9 +52,9 @@ class WardenProvider with ChangeNotifier {
     try {
       final url = Uri.https('testapi.vitap.app', '/api/updateLeaveStatus');
       final requestBody = json.encode({
-        "regNo": regNo,
+        "regNo": regNo, // Use the parameter value
         "status": 2,
-        "remark": remark,
+        "remark": remark, // Use the parameter value
       });
 
       final response = await http.post(
@@ -65,15 +65,24 @@ class WardenProvider with ChangeNotifier {
         body: requestBody,
       );
 
+      print(
+          'Request Body: $requestBody'); // Add this line to print the request body
+
       if (response.statusCode == 200) {
         // Leave approval successful
         showSnackBar(ctx, 'Leave Approved');
       } else {
         // Leave approval failed
+        print(
+            'Response Status Code: ${response.statusCode}'); // Add this line to print the response status code
+        print(
+            'Response Body: ${response.body}'); // Add this line to print the response body
         showSnackBar(ctx, 'Failed to approve leave');
       }
     } catch (error) {
       // Handle network or other errors
+      print(
+          'Error approving leave: $error'); // Add this line to print the error message
       showSnackBar(ctx, 'Error approving leave: $error');
     }
   }

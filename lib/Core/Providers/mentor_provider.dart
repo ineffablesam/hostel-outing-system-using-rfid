@@ -95,11 +95,13 @@ class MentorProvider with ChangeNotifier {
         },
         body: requestBody,
       );
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         // Leave disapproval successful
         showSnackBar(ctx, 'Leave Disapproved');
       } else {
+        print(response.body.toString());
         // Leave disapproval failed
         showSnackBar(ctx, 'Failed to disapprove leave');
       }

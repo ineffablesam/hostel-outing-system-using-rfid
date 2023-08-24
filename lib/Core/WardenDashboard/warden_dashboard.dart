@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hostel/Core/MentorDashboard/mentor_overview.dart';
 import 'package:hostel/Core/Providers/warden_provider.dart';
+import 'package:hostel/Core/WardenDashboard/warden_overview.dart';
 import 'package:provider/provider.dart';
 
 import '../CustomTap/custom_tap.dart';
@@ -71,7 +71,7 @@ class WardenScreen extends StatelessWidget {
                             context,
                             CupertinoPageRoute(
                                 builder: (context) =>
-                                    MentorOverview(mentor: mentorObject)))
+                                    WardenOverview(mentor: mentorObject)))
                         .then((value) {
                       Provider.of<MentorProvider>(context, listen: false)
                           .fetchData();

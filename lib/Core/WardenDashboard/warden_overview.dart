@@ -157,7 +157,7 @@ class _WardenOverviewState extends State<WardenOverview> {
                                 widget.mentor.students?.first.regNo
                                         ?.toUpperCase() ??
                                     "21BCE8427",
-                                "None");
+                                "Warden Remark");
                       },
                       borderRadius: BorderRadius.all(Radius.circular(7.r)),
                       child: Container(
@@ -226,6 +226,7 @@ class _WardenOverviewState extends State<WardenOverview> {
                     ),
                   ),
                 ),
+
                 40.verticalSpace,
               ],
             ),
